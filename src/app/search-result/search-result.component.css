@@ -1,0 +1,11 @@
+.myUl{
+    border: 4px double black; /* Параметры границы */
+    background: rgb(255, 255, 255); /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+
+}
+.img{
+    position:relative;
+    left: 0;
+    height: 10%; width:10% ;
+}
