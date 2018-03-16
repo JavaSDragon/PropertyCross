@@ -20,8 +20,7 @@ export class SearchComponent implements OnInit {
   }
   ngOnInit() {
     this.inputControl = new FormControl();
-    this.inputControl.valueChanges.subscribe(
-      value => { this.inputControl.value=value });
+    this.inputControl;
   }
   go() {
     this.setValue();
