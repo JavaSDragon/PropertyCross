@@ -21,19 +21,14 @@ export class SearchComponent implements OnInit {
   }
   ngOnInit() {
     this.inputControl = new FormControl();
-  }
-  setNumbers() {
     this.searchResultService.getNumRes()
       .subscribe((data) => {
         this.resultNumbers = data;
-        console.log(data)
       });
   }
   go() {
     this.setValue();
     this.searchRequest.push(this.inputControl.value);
-    this.resultNumbers = this.resultNumbers;
-    this.setNumbers();
     console.log("test " + this.resultNumbers);
   }
 }
