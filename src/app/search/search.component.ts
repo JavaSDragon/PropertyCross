@@ -14,16 +14,19 @@ import { Observable } from 'rxjs/Observable';
 export class SearchComponent implements OnInit {
   searchRequest = [];
   private inputControl: any;
+  private resultNumber: number;
   constructor(private searchResultService: SearchResultService) { }
   public setValue() {
     this.searchResultService.myValue = this.inputControl.value;
   }
   ngOnInit() {
     this.inputControl = new FormControl();
-    this.inputControl;
   }
   go() {
     this.setValue();
     this.searchRequest.push(this.inputControl.value);
-  }
+    this.searchResultService.getInfo()
+      .subscribe((data) => {
+        this.resultNumber=data.length});
+}
 }

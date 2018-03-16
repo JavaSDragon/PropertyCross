@@ -2,7 +2,7 @@ import { Input, EventEmitter, Component, OnInit, Output } from '@angular/core';
 import { Result } from '../result';
 import { SearchResultService } from '../searchResult.service';
 import { SearchComponent } from '../search/search.component';
-//import { setTimeout } from 'timers';
+
 
 
 @Component({
@@ -17,7 +17,6 @@ export class SearchResultComponent implements OnInit {
     this.searchResultService.getInfo()
       .subscribe((data) => {
         this.searchList = data;
-        console.log(this.searchList);
       });
   }
 }
