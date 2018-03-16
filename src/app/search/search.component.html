@@ -1,17 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    <button (click)="faves($event)">FAVES</button>
+    <button (click)="faves">FAVES</button>
   </h1>
-  
-  <span>Use the form below to search for houses to buy.
-    You can search by place-name,postcode,on click 'My location',
-    to search in your current location.</span>
+
+  <span>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
+    in your current location.</span>
   <br>
 
-  <input myInput placeholder="text" />
+  <input myInput placeholder="text" [formControl]="inputControl" />
 
   <br>
-<button (click)="go()">GO</button>
-<button (click)="myLocation()">My location</button>
-<h2>Recent searches:</h2>
+  <button (click)="go()">Go</button>
+  <button (click)="myLocation()">My location</button>
+  <h2>Recent searches:</h2>
+
+  <ul>
+    <li class="myUl" *ngFor="let inputValue of searchRequest" routerLink="/{{inputValue}}">
+      {{inputValue}}
+      </li>
+  </ul>

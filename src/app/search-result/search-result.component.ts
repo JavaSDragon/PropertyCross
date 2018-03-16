@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, EventEmitter, Component, OnInit, Output } from '@angular/core';
 import { Result } from '../result';
 import { SearchResultService } from '../searchResult.service';
+import { SearchComponent } from '../search/search.component';
+//import { setTimeout } from 'timers';
 
 
 @Component({
@@ -10,8 +12,7 @@ import { SearchResultService } from '../searchResult.service';
 })
 export class SearchResultComponent implements OnInit {
   searchList: Result[] = [];
-  constructor(private searchResultService:SearchResultService) { }
-
+  constructor(private searchResultService: SearchResultService) { }
   ngOnInit() {
     this.searchResultService.getInfo()
       .subscribe((data) => {
