@@ -16,7 +16,7 @@
   <h2>Recent searches:</h2>
 
   <ul>
-    <li class="myUl" *ngFor="let inputValue of searchRequest" routerLink="/{{inputValue}}">
-      {{inputValue}}
-      </li>
+    <li class="myUl" *ngFor="let inputControl of searchRequest" routerLink="/{{inputControl}}">
+      {{inputControl}}
+    </li>
   </ul>

@@ -14,22 +14,17 @@ import { Observable } from 'rxjs/Observable';
 export class SearchComponent implements OnInit {
   searchRequest = [];
   private inputControl: any;
-  public inputValue: string;
   constructor(private searchResultService: SearchResultService) { }
   public setValue() {
-    this.searchResultService.myValue = this.inputValue;
+    this.searchResultService.myValue = this.inputControl.value;
   }
   ngOnInit() {
-    // this.searchResultService.getInfo()
-    //   .subscribe(search => console.log(search));
     this.inputControl = new FormControl();
     this.inputControl.valueChanges.subscribe(
-      value => { this.inputValue = value });
-    // console.log(this.searchResultService.myValue);
+      value => { this.inputControl.value=value });
   }
-  go(){
-  this.setValue();
-  this.searchRequest.push(this.inputValue);
-  console.log(this.inputValue)
+  go() {
+    this.setValue();
+    this.searchRequest.push(this.inputControl.value);
   }
 }
