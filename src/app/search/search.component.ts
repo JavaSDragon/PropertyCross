@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export class SearchComponent implements OnInit {
   searchRequest = [];
   private inputControl: any;
-  private resultNumber: number;
+  public resultNumbers: any;
   constructor(private searchResultService: SearchResultService) { }
   public setValue() {
     this.searchResultService.myValue = this.inputControl.value;
@@ -22,11 +22,18 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.inputControl = new FormControl();
   }
+  setNumbers() {
+    this.searchResultService.getNumRes()
+      .subscribe((data) => {
+        this.resultNumbers = data;
+        console.log(data)
+      });
+  }
   go() {
     this.setValue();
     this.searchRequest.push(this.inputControl.value);
-    this.searchResultService.getInfo()
-      .subscribe((data) => {
-        this.resultNumber=data.length});
-}
+    this.resultNumbers = this.resultNumbers;
+    this.setNumbers();
+    console.log("test " + this.resultNumbers);
+  }
 }

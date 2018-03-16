@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 export class SearchResultService {
   constructor(private http: HttpClient) { }
   public myValue: any;
+  public resNum:any;
   getInfo(): Observable<Result[]> {
     return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${this.myValue}`)
       .map(({ response: listings }: any) => listings)
@@ -21,4 +22,11 @@ export class SearchResultService {
         })
         )))
   }
+
+  getNumRes():Observable<any> {
+    return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${this.myValue}`)
+      .map(({ request:num_res }: any) => num_res)
+      .map(({ num_res }: any)=> {return num_res})
+        //this.resNum=num_res));
+   }
 }

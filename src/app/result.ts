@@ -4,4 +4,5 @@ export class Result {
     title: string;
     price_currency: string;
     myValue:string;
+    num_Res:number;
 }
