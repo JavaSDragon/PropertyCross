@@ -17,12 +17,14 @@ export class SearchComponent implements OnInit {
   }
   ngOnInit() {
     this.inputControl = new FormControl();
+    this.searchRequest=JSON.parse(localStorage.getItem('request'));
   }
   go() {
     this.searchResultService.getNumRes(this.inputControl.value)
       .subscribe((data) => {
         this.searchRequest = data;
-        console.log(this.searchRequest);
+  localStorage.setItem('request',JSON.stringify(this.searchRequest))
+
       });
   }
   private currentPlace(item) {
