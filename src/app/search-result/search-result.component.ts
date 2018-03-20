@@ -1,8 +1,7 @@
-import { Input, EventEmitter, Component, OnInit, Output } from '@angular/core';
-import { Result } from '../result';
+import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
-import { SearchComponent } from '../search/search.component';
-
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,13 +10,17 @@ import { SearchComponent } from '../search/search.component';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  searchList: Result[] = [];
-  constructor(private searchResultService: SearchResultService) { }
+  private searchList = [];
+  public test;
+  constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
   ngOnInit() {
-    this.searchResultService.getInfo()
-      .subscribe((data) => {
-        this.searchList = data;
-        console.log(this.searchList);
-      });
+    this.searchList = this.searchResultService.currentList;
+  }
+  back() {
+    this.location.back();
+  }
+  detail(item) {
+    this.searchResultService.detail = item;
+    this.router.navigate(['/detail']);
   }
 }

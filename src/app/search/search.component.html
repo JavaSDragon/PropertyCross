@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    <button (click)="faves">FAVES</button>
+    <button (click)="faves()">FAVES</button>
   </h1>
 
   <span>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
@@ -16,7 +16,7 @@
   <h2>Recent searches:</h2>
 
   <ul>
-    <li class="myUl" *ngFor="let inputControl of searchRequest" routerLink="/{{inputControl}}">
-      {{inputControl}}  ({{resultNumbers}})
+    <li (click)="currentPlace(itemRequest)" class="myUl" *ngFor="let itemRequest of searchRequest">
+      {{itemRequest?.location}} ({{itemRequest?.total_results}})
     </li>
   </ul>

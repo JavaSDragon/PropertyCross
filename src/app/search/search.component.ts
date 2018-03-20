@@ -1,10 +1,8 @@
-import { Output, Input, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchResultService } from '../searchResult.service';
 import { FormControl } from '@angular/forms';
-import { EventEmitter } from 'selenium-webdriver';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-
 
 @Component({
   selector: 'app-search',
@@ -12,23 +10,26 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  searchRequest = [];
+  private searchRequest: any[];
   private inputControl: any;
-  public resultNumbers: any;
-  constructor(private searchResultService: SearchResultService) { }
-  public setValue() {
-    this.searchResultService.myValue = this.inputControl.value;
+
+  constructor(private searchResultService: SearchResultService, private router: Router) {
   }
   ngOnInit() {
     this.inputControl = new FormControl();
-    this.searchResultService.getNumRes()
-      .subscribe((data) => {
-        this.resultNumbers = data;
-      });
   }
   go() {
-    this.setValue();
-    this.searchRequest.push(this.inputControl.value);
-    console.log("test " + this.resultNumbers);
+    this.searchResultService.getNumRes(this.inputControl.value)
+      .subscribe((data) => {
+        this.searchRequest = data;
+        console.log(this.searchRequest);
+      });
+  }
+  private currentPlace(item) {
+    this.searchResultService.currentList = item.result;
+    this.router.navigate(['/result']);
+  }
+  private faves(){
+    this.router.navigate(['/faves']);
   }
 }

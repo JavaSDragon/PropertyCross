@@ -1,0 +1,12 @@
+<button (click)="back()">Back</button>
+<br>
+<button (click)="addFaves()">+</button>
+<div style="text-align:center">
+  <div>
+    {{detailList.priceCurrency}}{{detailList.price}}
+    <br> {{detailList.title}}
+    <br>
+    <img src={{detailList.imgUrl}} class="img">
+    <br> {{detailList.bedroomNumber}}:bathrooms
+    <br> {{detailList.summary}}
+  </div>

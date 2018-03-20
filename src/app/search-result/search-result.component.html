@@ -1,3 +1,4 @@
+<button (click)="back()" >Back</button>
 <ul >
-  <li class="myUl" *ngFor="let searchResult of searchList; ">  <img src={{searchResult.imgUrl}} class="img">  {{searchResult.priceCurrency}}{{searchResult.price}}    {{searchResult.title}}</li>
+  <li (click)="detail(itemResult)" class="myUl" *ngFor="let itemResult of searchList">  <img src={{itemResult.imgUrl}} class="img">  {{itemResult.priceCurrency}}{{itemResult.price}}    {{itemResult.title}}</li>
 </ul>
