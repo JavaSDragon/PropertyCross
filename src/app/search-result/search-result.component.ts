@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class SearchResultComponent implements OnInit {
   private searchList = [];
-  public test;
   constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
   ngOnInit() {
     this.searchList = this.searchResultService.currentList;

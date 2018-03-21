@@ -9,9 +9,11 @@ import { Location } from '@angular/common';
 })
 export class FavesComponent implements OnInit {
  private favesList:any[];
+ private buttonValue:any;
   constructor(private searchResultService: SearchResultService,private location: Location) { }
 
   ngOnInit() {
+    this.searchResultService.faves=JSON.parse(localStorage.getItem('faves'));
     this.favesList=this.searchResultService.faves;
   }
   back() {
