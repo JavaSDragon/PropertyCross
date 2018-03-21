@@ -1,4 +1,6 @@
-<button (click)="back()">Back</button>
+<button (click)="back()">back</button>
+<br>
+<button (click)="goFaves()">faves</button>
 <br>
 <button (click)="addFaves()">{{buttonValue}}</button>
 <div style="text-align:center">
@@ -10,3 +12,9 @@
     <br> {{detailList.bedroomNumber}}:bathrooms
     <br> {{detailList.summary}}
   </div>
+  <div class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="100"
+  (scrolled)="onScroll()">
+</div>

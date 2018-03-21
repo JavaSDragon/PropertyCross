@@ -13,7 +13,8 @@ export class SearchResultService {
   public listings: any[] = [];
   public currentList: any;
   public detail: any;
-  public faves: any[]=[];
+  public faves: any[] = [];
+  public detailList: any;
   getNumRes(search: string): Observable<any> {
     return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${search}`)
       .map(({ response: { total_results, listings, created_http }, request: { location } }: any) => this.mapListings(listings, { time: created_http, location, count: total_results }))
@@ -32,8 +33,7 @@ export class SearchResultService {
       })),
       total_results,
       location
-    }
-    ]
+    }]
     return this.listings;
   }
 }

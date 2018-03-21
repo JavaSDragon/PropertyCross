@@ -16,10 +16,13 @@ export class SearchResultComponent implements OnInit {
     this.searchList = this.searchResultService.currentList;
   }
   back() {
-    this.location.back();
+    this.router.navigate(['/search']);
   }
   detail(item) {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
+  onScroll () {
+    console.log('scrolled!!')
+}
 }

@@ -1,6 +1,6 @@
 <button (click)="back()">Back</button>
 <div style="text-align:center"></div>
 <ul>
-    <li  class="myUl" *ngFor="let item of favesList">
+    <li (click)="goDetail(item)" class="myUl" *ngFor="let item of favesList">
       <img src={{item.imgUrl}} class="img"> {{item.priceCurrency}}{{item.price}} {{item.title}}</li>
   </ul>
