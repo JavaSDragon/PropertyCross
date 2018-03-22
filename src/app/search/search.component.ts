@@ -23,18 +23,21 @@ export class SearchComponent implements OnInit {
   go() {
     this.searchResultService.getNumRes(this.inputControl.value)
       .subscribe((data) => {
-        if(data.length>5){
+        if (data.length > 5) {
           data.splice(0, 1)
         }
         this.searchRequest = data;
-        localStorage.setItem('request', JSON.stringify(this.searchRequest)); 
+        localStorage.setItem('request', JSON.stringify(this.searchRequest));
         console.log(this.searchRequest);
       });
   }
   private currentPlace(item) {
-    this.searchResultService.location=item.location;
+    this.searchResultService.location = item.location;
+    
     this.searchResultService.currentList = item.result;
     this.router.navigate(['/result']);
+    console.log(this.searchResultService.location);
+    console.log(item);
   }
   private faves() {
     this.router.navigate(['/faves']);

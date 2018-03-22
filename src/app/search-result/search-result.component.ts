@@ -17,7 +17,7 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     this.searchList = this.searchResultService.currentList;
     console.log(this.searchList);
-    this.page = 4;
+    this.page = 5;
   }
   private back() {
     this.router.navigate(['/search']);
@@ -26,23 +26,13 @@ export class SearchResultComponent implements OnInit {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
-  onScrollUp() {
-    console.log('scrolled!!');
-    // this.page-=1;
-    // console.log(this.page);
-    // this.searchResultService.getPage(this.page)
-    //   .subscribe((data) => {
-    //    this.searchList=data;
-    //   });
-  }
-  onScrollDown() {
-    console.log('scrolled!!');
-    this.page += 1;
-    console.log(this.page);
+  private onScroll() {
     this.searchResultService.getPage(this.page)
       .subscribe((data) => {
-        this.searchList = data;
+        data.forEach((item) => {
+          this.searchList.push(item)
+        })
       });
+      this.page += 1;
   }
-
 }

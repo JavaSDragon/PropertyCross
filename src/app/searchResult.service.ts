@@ -19,10 +19,10 @@ export class SearchResultService {
   public location:string;
   getNumRes(search: string): Observable<any> {
     return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${search}`)
-      .map(({ response: { total_results, listings, created_http }, request: { location } }: any) => this.mapListings(listings, { time: created_http, location, count: total_results }))
+      .map(({ response: { total_results,total_pages, listings, created_http, }, request: { location } }: any) => this.mapListings(listings, { time: created_http, location, count: total_results,pages:total_pages }))
   }
 
-  private mapListings(listings: any[], { time, location, count: total_results }: any): any[] {
+  private mapListings(listings: any[], { time, location, count: total_results,pages:total_pages }: any): any[] {
     this.listings = [...this.listings,
     {
       result: listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency, summary, bedroom_number: bedroomNumber }: any) => ({
@@ -34,7 +34,8 @@ export class SearchResultService {
         bedroomNumber
       })),
       total_results,
-      location
+      location,
+      total_pages
     }]
     return this.listings;
   }

@@ -19,7 +19,7 @@ export class FavesComponent implements OnInit {
   back() {
     this.router.navigate(['/search']);
   }
-  private goDetail(item){
+  private goDetail(item) {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
