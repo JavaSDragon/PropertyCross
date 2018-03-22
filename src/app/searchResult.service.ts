@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs/Observable';
 import { Result } from './result';
 import { SearchComponent } from './search/search.component';
+import { Location } from '@angular/common';
 
 
 @Injectable()
@@ -15,6 +16,7 @@ export class SearchResultService {
   public detail: any;
   public faves: any[] = [];
   public detailList: any;
+  public location:string;
   getNumRes(search: string): Observable<any> {
     return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${search}`)
       .map(({ response: { total_results, listings, created_http }, request: { location } }: any) => this.mapListings(listings, { time: created_http, location, count: total_results }))
@@ -36,4 +38,16 @@ export class SearchResultService {
     }]
     return this.listings;
   }
-}
+  getPage(page): Observable<Result[]> {
+      return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=${page}&place_name=${this.location}`)
+        .map(({ response: listings }: any) => listings)
+        .map(({ listings }: any) => (
+          listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency}: any) => ({
+            imgUrl,
+            price,
+            title,
+            priceCurrency,
+          })
+          )))
+    }
+  }

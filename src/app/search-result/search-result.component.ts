@@ -11,18 +11,38 @@ import { Router } from '@angular/router';
 })
 export class SearchResultComponent implements OnInit {
   private searchList = [];
+  private getLocation: string;
+  private page: number;
   constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
   ngOnInit() {
     this.searchList = this.searchResultService.currentList;
+    console.log(this.searchList);
+    this.page = 4;
   }
-  back() {
+  private back() {
     this.router.navigate(['/search']);
   }
-  detail(item) {
+  private detail(item) {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
-  onScroll () {
-    console.log('scrolled!!')
-}
+  onScrollUp() {
+    console.log('scrolled!!');
+    // this.page-=1;
+    // console.log(this.page);
+    // this.searchResultService.getPage(this.page)
+    //   .subscribe((data) => {
+    //    this.searchList=data;
+    //   });
+  }
+  onScrollDown() {
+    console.log('scrolled!!');
+    this.page += 1;
+    console.log(this.page);
+    this.searchResultService.getPage(this.page)
+      .subscribe((data) => {
+        this.searchList = data;
+      });
+  }
+
 }

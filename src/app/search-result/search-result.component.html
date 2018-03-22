@@ -1,11 +1,8 @@
 <button (click)="back()">Back</button>
 <ul>
   <li (click)="detail(itemResult)" class="myUl" *ngFor="let itemResult of searchList">
-    <img src={{itemResult.imgUrl}} class="img"> {{itemResult.priceCurrency}}{{itemResult.price}} {{itemResult.title}}</li>
+    <img src={{itemResult.imgUrl}} class="img"> {{itemResult?.priceCurrency}}{{itemResult?.price}} {{itemResult?.title}}</li>
 </ul>
-  <div class="search-results"
-  infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="100"
-  (scrolled)="onScroll()">
+<div class="search-results" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollUpDistance]="3" [infiniteScrollThrottle]="1000" (scrolled)="onScrollDown()"
+(scrolledUp)="onScrollUp()" [scrollWindow] = "true">
 </div>

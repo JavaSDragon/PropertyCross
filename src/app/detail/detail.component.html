@@ -5,16 +5,11 @@
 <button (click)="addFaves()">{{buttonValue}}</button>
 <div style="text-align:center">
   <div>
-    {{detailList.priceCurrency}}{{detailList.price}}
-    <br> {{detailList.title}}
+    {{detailList?.priceCurrency}}{{detailList?.price}}
+    <br> {{detailList?.title}}
     <br>
     <img src={{detailList.imgUrl}} class="img">
-    <br> {{detailList.bedroomNumber}}:bathrooms
-    <br> {{detailList.summary}}
+    <br> {{detailList?.bedroomNumber}}:bathrooms
+    <br> {{detailList?.summary}}
   </div>
-  <div class="search-results"
-  infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="100"
-  (scrolled)="onScroll()">
-</div>
+
