@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
+import { itemResult } from '../itemResult';
 
 @Component({
   selector: 'app-faves',
@@ -22,7 +23,7 @@ export class FavesComponent implements OnInit {
     this.router.navigate(['/search']);
   }
 
-  private goDetail(item): void {
+  private goDetail(item: itemResult): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }

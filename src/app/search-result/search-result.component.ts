@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
+import { flatsResult } from '../result';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class SearchResultComponent implements OnInit {
     this.router.navigate(['/search']);
   }
 
-  private detail(item): void {
+  private detail(item:flatsResult[]): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }

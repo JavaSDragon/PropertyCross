@@ -1,0 +1,10 @@
+.span{
+    background-color: rgb(98, 0, 255);
+    height: 100px;
+    width: 100%;
+    font-size: 250%;
+    text-align:center;
+    cursor: pointer;
+    box-shadow: 14px 9px 54px 20px #1200ff;
+}
+

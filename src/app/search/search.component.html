@@ -1,22 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    <button (click)="faves()">FAVES</button>
-  </h1>
 
-  <h2>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
-    in your current location.</h2>
-  <br>
+<body>
+  <div style="text-align:center">
 
-  <input myInput placeholder="city" [formControl]="inputControl" />
+    <h1>
+      <button (click)="faves()">FAVES</button>
+    </h1>
 
-  <br>
-  <button (click)="go()">Go</button>
-  <button (click)="myLocation()">My location</button>
-  <h3>{{searchTitle}}</h3>
+    <h2>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
+      in your current location.</h2>
+    <br>
 
-  <ul>
-    <li (click)="currentPlace(itemRequest)" class="myUl" *ngFor="let itemRequest of searchRequest">
-      {{itemRequest?.location}} ({{itemRequest?.total_results}})
-    </li>
-  </ul>
+    <input myInput placeholder="city" [formControl]="inputControl" />
+    <br>
+
+    <button (click)="go()">Go</button>
+    <button (click)="myLocation()">My location</button>
+
+    <h3>{{searchTitle}}</h3>
+
+    <div *ngIf="this.searchRequest.length">
+
+      <ul class="myUl">
+        <li (click)="currentPlace(itemRequest)" class="myLi" *ngFor="let itemRequest of searchRequest">
+          {{itemRequest?.location}} ({{itemRequest?.total_results}})
+        </li>
+      </ul>
+    </div>
+    </div>
+</body>

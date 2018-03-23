@@ -1,15 +1,17 @@
-<button (click)="back()">back</button>
-<br>
-<button (click)="goFaves()">faves</button>
-<br>
-<button (click)="addFaves()">{{buttonValue}}</button>
-<div style="text-align:center">
-  <div>
-    {{detailList?.priceCurrency}}{{detailList?.price}}
-    <br> {{detailList?.title}}
-    <br>
-    <img src={{detailList.imgUrl}} class="img">
-    <br> {{detailList?.bedroomNumber}}:bathrooms
-    <br> {{detailList?.summary}}
+<body>
+  <button (click)="back()">back</button>
+  <br>
+  <button (click)="goFaves()">faves</button>
+  <br>
+  <button (click)="addFaves()">{{buttonValue}}</button>
+  <div style="text-align:center">
+    <div>
+      {{detailList?.priceCurrency}}{{detailList?.price}}
+      <br> {{detailList?.title}}
+      <br>
+      <img src={{detailList.imgUrl}} class="img">
+      <br> {{detailList?.bedroomNumber}}:bathrooms
+      <br> {{detailList?.summary}}
+    </div>
   </div>
-
+</body>
