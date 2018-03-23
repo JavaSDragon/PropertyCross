@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-//import { InfiniteScroll } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-detail',
@@ -13,19 +11,22 @@ export class DetailComponent implements OnInit {
   private detailList: any;
   private buttonValue: any = "+";
   private position: number;
-  constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
+  constructor(private searchResultService: SearchResultService, private router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.detailList = this.searchResultService.detail;
     this.checkList();
   }
-  back() {
+
+  private back(): void {
     this.router.navigate(['/result']);
   }
-  private goFaves(){
+
+  private goFaves(): void {
     this.router.navigate(['/faves']);
   }
-  addFaves() {
+
+  private addFaves(): void {
     if (this.buttonValue === "+") {
       this.searchResultService.faves.push(this.detailList)
       localStorage.setItem('faves', JSON.stringify(this.searchResultService.faves));
@@ -37,7 +38,8 @@ export class DetailComponent implements OnInit {
       this.buttonValue === "-" ? this.buttonValue = "+" : this.buttonValue = "-";
     }
   }
-  private checkList() {
+
+  private checkList(): void {
     this.searchResultService.faves.forEach((elem, i) => {
       if (this.detailList.title == elem.title) {
         this.buttonValue = "-";
@@ -45,7 +47,4 @@ export class DetailComponent implements OnInit {
       }
     });
   }
-  onScroll () {
-    console.log('scrolled!!')
-}
 }

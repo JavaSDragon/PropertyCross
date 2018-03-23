@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 
@@ -10,29 +9,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
+
   private searchList = [];
   private getLocation: string;
   private page: number;
-  constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
-  ngOnInit() {
+
+  constructor(private searchResultService: SearchResultService, private router: Router) { }
+
+  public ngOnInit(): void {
     this.searchList = this.searchResultService.currentList;
-    console.log(this.searchList);
     this.page = 5;
   }
-  private back() {
+
+  private back(): void {
     this.router.navigate(['/search']);
   }
-  private detail(item) {
+
+  private detail(item): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
-  private onScroll() {
+
+  private onScroll(): void {
     this.searchResultService.getPage(this.page)
-      .subscribe((data) => {
-        data.forEach((item) => {
-          this.searchList.push(item)
-        })
+      .subscribe(data => {
+        this.searchList = [...this.searchList, ...data];
       });
-      this.page += 1;
+    this.page += 1;
   }
 }

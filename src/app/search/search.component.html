@@ -4,16 +4,16 @@
     <button (click)="faves()">FAVES</button>
   </h1>
 
-  <span>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
-    in your current location.</span>
+  <h2>Use the form below to search for houses to buy. You can search by place-name,postcode,on click 'My location', to search
+    in your current location.</h2>
   <br>
 
-  <input myInput placeholder="text" [formControl]="inputControl" />
+  <input myInput placeholder="city" [formControl]="inputControl" />
 
   <br>
   <button (click)="go()">Go</button>
   <button (click)="myLocation()">My location</button>
-  <h2>Recent searches:</h2>
+  <h3>{{searchTitle}}</h3>
 
   <ul>
     <li (click)="currentPlace(itemRequest)" class="myUl" *ngFor="let itemRequest of searchRequest">

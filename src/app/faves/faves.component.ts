@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,17 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./faves.component.css']
 })
 export class FavesComponent implements OnInit {
-  private favesList: any[];
-  constructor(private searchResultService: SearchResultService, private location: Location, private router: Router) { }
 
-  ngOnInit() {
+  private favesList: any[];
+
+  constructor(private searchResultService: SearchResultService, private router: Router) { }
+
+  public ngOnInit(): void {
     this.searchResultService.faves = JSON.parse(localStorage.getItem('faves'));
     this.favesList = this.searchResultService.faves;
   }
-  back() {
+
+  private home(): void {
     this.router.navigate(['/search']);
   }
-  private goDetail(item) {
+
+  private goDetail(item): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
