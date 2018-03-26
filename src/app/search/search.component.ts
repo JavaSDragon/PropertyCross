@@ -4,7 +4,8 @@ import { SearchResultService } from '../searchResult.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { filter, map } from 'rxjs/operators';
-import { itemResult } from '../itemResult';
+import { FlatsResult } from '../result';
+import { ItemResult } from '../itemResult';
 
 @Component({
   selector: 'app-search',
@@ -13,11 +14,9 @@ import { itemResult } from '../itemResult';
 })
 export class SearchComponent implements OnInit {
 
-  private searchRequest: any[];
+  private searchRequest: any[] = [];
   private inputControl: any;
   private searchTitle: string = "Recent searches:";
-  private test: number;
-  private test2:any[]=[];
 
   constructor(private searchResultService: SearchResultService, private router: Router) {
   }
@@ -30,8 +29,7 @@ export class SearchComponent implements OnInit {
     this.searchRequest = this.searchResultService.listings;
   }
 
-
-  private go(): void {
+  public go(): void {
     this.searchResultService.getNumRes(this.inputControl.value)
       .pipe(
         map(item => item.slice(-5)),
@@ -44,13 +42,12 @@ export class SearchComponent implements OnInit {
     this.searchTitle = "Please select a location below:";
   }
 
-  private currentPlace(item: itemResult): void {
-    this.searchResultService.location = item.location;
+  public currentPlace(item: ItemResult): void {
     this.searchResultService.currentList = item.result;
     this.router.navigate(['/result']);
   }
 
-  private faves(): void {
+  public faves(): void {
     this.router.navigate(['/faves']);
   }
 }

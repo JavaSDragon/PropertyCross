@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
+import { FlatsResult } from '../result';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: ['./detail.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DetailComponent implements OnInit {
-  private detailList: any;
-  private buttonValue: any = "+";
+  private detailList: FlatsResult;
+  private buttonValue: string = "+";
   private position: number;
   constructor(private searchResultService: SearchResultService, private router: Router) { }
 
@@ -18,25 +20,22 @@ export class DetailComponent implements OnInit {
     this.checkList();
   }
 
-  private back(): void {
+  public back(): void {
     this.router.navigate(['/result']);
   }
 
-  private goFaves(): void {
+  public goFaves(): void {
     this.router.navigate(['/faves']);
   }
 
-  private addFaves(): void {
+  public addFaves(): void {
     if (this.buttonValue === "+") {
       this.searchResultService.faves.push(this.detailList)
-      localStorage.setItem('faves', JSON.stringify(this.searchResultService.faves));
-      this.buttonValue === "+" ? this.buttonValue = "-" : this.buttonValue = "+";
-    }
-    else {
+    } else {
       this.searchResultService.faves.splice(this.position, 1);
-      localStorage.setItem('faves', JSON.stringify(this.searchResultService.faves));
-      this.buttonValue === "-" ? this.buttonValue = "+" : this.buttonValue = "-";
     }
+    this.buttonValue = this.buttonValue === "+" ? "-" : "+"
+    localStorage.setItem('faves', JSON.stringify(this.searchResultService.faves));
   }
 
   private checkList(): void {

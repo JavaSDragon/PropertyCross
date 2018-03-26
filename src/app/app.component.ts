@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'PropertyCross';
-  
-  constructor( private router: Router) { }
- 
-  private goHome():void{
-      this.router.navigate(['/search']);
+
+  constructor(private router: Router) { }
+
+  private goHome(): void {
+    this.router.navigate(['/search']);
   }
 }
 

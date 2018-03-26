@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
-import { flatsResult } from '../result';
+import { FlatsResult } from '../result';
+import { ItemResult } from '../itemResult';
 
 
 @Component({
@@ -11,8 +12,7 @@ import { flatsResult } from '../result';
 })
 export class SearchResultComponent implements OnInit {
 
-  private searchList = [];
-  private getLocation: string;
+  private searchList: FlatsResult[] = [];
   private page: number;
 
   constructor(private searchResultService: SearchResultService, private router: Router) { }
@@ -22,16 +22,16 @@ export class SearchResultComponent implements OnInit {
     this.page = 5;
   }
 
-  private back(): void {
+  public back(): void {
     this.router.navigate(['/search']);
   }
 
-  private detail(item:flatsResult[]): void {
+  public detail(item: ItemResult): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
   }
 
-  private onScroll(): void {
+  public onScroll(): void {
     this.searchResultService.getPage(this.page)
       .subscribe(data => {
         this.searchList = [...this.searchList, ...data];

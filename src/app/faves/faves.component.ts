@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
-import { itemResult } from '../itemResult';
+import { ItemResult } from '../itemResult';
+import { FlatsResult } from '../result';
 
 @Component({
   selector: 'app-faves',
@@ -10,7 +11,7 @@ import { itemResult } from '../itemResult';
 })
 export class FavesComponent implements OnInit {
 
-  private favesList: any[];
+  private favesList: FlatsResult[] = [];
 
   constructor(private searchResultService: SearchResultService, private router: Router) { }
 
@@ -19,12 +20,13 @@ export class FavesComponent implements OnInit {
     this.favesList = this.searchResultService.faves;
   }
 
-  private home(): void {
+  public home(): void {
     this.router.navigate(['/search']);
   }
 
-  private goDetail(item: itemResult): void {
+  public goDetail(item: ItemResult): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
+    console.log(item);
   }
 }
