@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { filter, map } from 'rxjs/operators';
 import { FlatsResult } from '../result';
-import { ItemResult } from '../itemResult';
+import { ItemResult } from '../result';
 
 @Component({
   selector: 'app-search',
@@ -43,6 +43,7 @@ export class SearchComponent implements OnInit {
   }
 
   public currentPlace(item: ItemResult): void {
+    this.searchResultService.location = item.location;
     this.searchResultService.currentList = item.result;
     this.router.navigate(['/result']);
   }

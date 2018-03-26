@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
-import { FlatsResult } from '../result';
-import { ItemResult } from '../itemResult';
-
+import { FlatsResult, ItemResult } from '../result';
 
 @Component({
   selector: 'app-search-result',

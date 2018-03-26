@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../searchResult.service';
 import { Router } from '@angular/router';
-import { ItemResult } from '../itemResult';
-import { FlatsResult } from '../result';
+import { ItemResult,FlatsResult } from '../result';
 
 @Component({
   selector: 'app-faves',
