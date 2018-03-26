@@ -16,7 +16,9 @@ export class FavesComponent implements OnInit {
   constructor(private searchResultService: SearchResultService, private router: Router) { }
 
   public ngOnInit(): void {
-    this.searchResultService.faves = JSON.parse(localStorage.getItem('faves'));
+    if (JSON.parse(localStorage.getItem('faves'))) {
+      this.searchResultService.faves = JSON.parse(localStorage.getItem('faves'));
+    }
     this.favesList = this.searchResultService.faves;
   }
 
@@ -27,6 +29,5 @@ export class FavesComponent implements OnInit {
   public goDetail(item: ItemResult): void {
     this.searchResultService.detail = item;
     this.router.navigate(['/detail']);
-    console.log(item);
   }
 }

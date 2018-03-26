@@ -13,7 +13,7 @@ export class SearchResultService {
   public searchList: FlatsResult[];
   public currentList: FlatsResult[];
   public detail: FlatsResult;
-  public listings: Listings[];
+  public listings: Listings[] = [];
   public faves: FlatsResult[] = [];
   public detailList: FlatsResult[];
   public location: string;
@@ -28,7 +28,7 @@ export class SearchResultService {
   private mapListings(listings: FlatsResult[], { location, count: total_results }: any): any[] {
     this.listings = [...this.listings,
     {
-      result: listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency, summary, bedroom_number: bedroomNumber }: any) => ({
+      result: listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency, summary, bedroom_number: bedroomNumber }: FlatsResult) => ({
         imgUrl,
         price,
         title,
@@ -46,7 +46,7 @@ export class SearchResultService {
     return this.http.get(`https://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=${page}&place_name=${this.location}`)
       .map(({ response: listings }: any) => listings)
       .map(({ listings }: any) => (
-        listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency }: any) => ({
+        listings.map(({ img_url: imgUrl, price, title, price_currency: priceCurrency }: FlatsResult) => ({
           imgUrl,
           price,
           title,
