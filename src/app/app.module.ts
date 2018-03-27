@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators,ValidatorFn, NG_VALIDATORS } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -19,7 +19,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SearchComponent,
     SearchResultComponent,
     DetailComponent,
-    FavesComponent
+    FavesComponent,
   ],
   imports: [
     BrowserModule,

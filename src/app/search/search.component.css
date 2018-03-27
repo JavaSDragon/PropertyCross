@@ -31,3 +31,11 @@ input {
     background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/95/02/4457eb80ad49f07.jpg");
     background-size: cover;
 }
+
+input.ng-touched.ng-invalid{
+    border-color: red;
+   }
+
+.inValid{
+  color:red;
+   }

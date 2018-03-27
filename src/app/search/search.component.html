@@ -13,9 +13,12 @@
 
     <input myInput placeholder="city" [formControl]="inputControl" />
     <br>
+    <div class="form-control-feedback" *ngIf="inputControl.errors">
+      <p class="inValid" *ngIf="inputControl.errors.pattern">Only english</p>
+    </div>
+
 
     <button (click)="go()">Go</button>
-    <button (click)="myLocation()">My location</button>
 
     <h3>{{searchTitle}}</h3>
 
